@@ -461,7 +461,7 @@ if uploaded_file is not None:
 
         show_dashboard(df)
 
-        st.stop()
+        # st.stop()
 
         st.subheader("🧠 Executive AI Summary")
 
