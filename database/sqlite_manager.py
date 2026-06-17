@@ -90,7 +90,7 @@ def save_model_metrics(
 
     cursor.execute(
         """
-        INSERT INTO model_registry
+        INSERT OR REPLACE INTO model_registry
         (
             model_name,
             version,
