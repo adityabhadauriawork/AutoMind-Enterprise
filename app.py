@@ -105,7 +105,7 @@ st.markdown("""
 
     </style>
     """, unsafe_allow_html=True)
-load_css()
+# load_css()
 st.title(f"🚀 {APP_NAME}")
 st.subheader("AI-Powered Business Intelligence Platform")
 
