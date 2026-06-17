@@ -1,37 +1,38 @@
-import pandas as pd
-
-
 def create_business_features(df):
 
     df = df.copy()
 
-    # Profit Margin %
+    required_columns = [
+        "Sales",
+        "Profit",
+        "Discount"
+    ]
+
+    missing_columns = [
+        col for col in required_columns
+        if col not in df.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(
+            f"Missing required columns: {', '.join(missing_columns)}"
+        )
 
     df["Profit Margin"] = (
         df["Profit"] /
         df["Sales"]
     ) * 100
 
-    # Revenue Per Order
-
-    df["Revenue Per Order"] = (
-        df["Sales"]
-    )
-
-    # Discount Impact
+    df["Revenue Per Order"] = df["Sales"]
 
     df["Discount Impact"] = (
         df["Sales"] *
         df["Discount"]
     )
 
-    # Profit Per Customer
-
     df["Profit Per Customer"] = (
         df["Profit"]
     )
-
-    # High Discount Flag
 
     df["High Discount Flag"] = (
         df["Discount"] > 0.20

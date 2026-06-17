@@ -135,9 +135,39 @@ if uploaded_file is not None:
         f"Dataset uploaded: {uploaded_file.name}"
     )
 
-    df, quality_report = prepare_dataset(
-        uploaded_file
-    )
+    try:
+
+        df, quality_report = prepare_dataset(
+            uploaded_file
+        )
+
+    except Exception as e:
+
+        st.error(
+            f"""
+            ❌ Dataset Validation Failed
+
+            {str(e)}
+            """
+        )
+
+        st.info(
+            """
+            AutoMind currently expects a business dataset
+            containing columns such as:
+
+            • Sales
+            • Profit
+            • Discount
+            • Category
+            • Sub-Category
+            • Order Date
+
+            Please upload a compatible dataset.
+            """
+        )
+
+        st.stop()
     # =========================
     # GLOBAL FILTERS
     # =========================
