@@ -48,6 +48,21 @@ def load_data(file):
         file,
         encoding="latin1"
     )
+@st.cache_data
+def prepare_dataset(file):
+
+    df = pd.read_csv(
+        file,
+        encoding="latin1"
+    )
+
+    quality_report = get_data_quality_report(df)
+
+    df = clean_dataset(df)
+
+    df = create_business_features(df)
+
+    return df, quality_report
 st.set_page_config(
     page_title="AutoMind Enterprise",
     layout="wide"
@@ -120,13 +135,9 @@ if uploaded_file is not None:
         f"Dataset uploaded: {uploaded_file.name}"
     )
 
-    df = load_data(
+    df, quality_report = prepare_dataset(
         uploaded_file
     )
-    quality_report = get_data_quality_report(df)
-
-    df = clean_dataset(df)
-    df = create_business_features(df)
     # =========================
     # GLOBAL FILTERS
     # =========================
