@@ -156,21 +156,21 @@ def show_forecasting(df):
         y_test,
         rf_predictions
     )
-    save_model_metrics(
-        "Linear Regression",
-        "v1",
-        linear_r2,
-        linear_mae,
-        linear_rmse
-    )
+    # save_model_metrics(
+    #     "Linear Regression",
+    #     "v1",
+    #     linear_r2,
+    #     linear_mae,
+    #     linear_rmse
+    # )
 
-    save_model_metrics(
-        "Random Forest",
-        "v1",
-        rf_r2,
-        rf_mae,
-        rf_rmse
-    )
+    # save_model_metrics(
+    #     "Random Forest",
+    #     "v1",
+    #     rf_r2,
+    #     rf_mae,
+    #     rf_rmse
+    # )
 
     # =========================
     # FUTURE PREDICTIONS
