@@ -211,12 +211,16 @@ def show_forecasting(df):
         }
     )
 
-    for _, row in forecast_df.iterrows():
+    if st.button("Generate Forecast"):
 
-        save_forecast(
-            str(row["Order Date"]),
-            float(row["Predicted Sales"])
-        )
+        for _, row in forecast_df.iterrows():
+
+            save_forecast(
+                str(row["Order Date"]),
+                float(row["Predicted Sales"])
+            )
+
+        st.success("Forecast Saved")
 
     # =========================
     # FORECAST TABLE

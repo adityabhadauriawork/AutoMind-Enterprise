@@ -598,7 +598,7 @@ if uploaded_file is not None:
                 top_category,
                 top_region
             )
-
+            st.success("PDF Section Reached")
             with open(pdf_file, "rb") as file:
 
                 st.download_button(
@@ -620,7 +620,7 @@ if uploaded_file is not None:
             quality_report
         )
 
-        st.stop()
+        # st.stop()
 
     elif page == "⏳ Time Intelligence":
         show_time_intelligence(df)
