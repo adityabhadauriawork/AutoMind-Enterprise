@@ -667,11 +667,11 @@ if uploaded_file is not None:
         logger.info(
             "Forecasting module opened"
         )
-        with st.spinner(
-            "🔮 Initializing Forecast Engine..."
-        ):
-            import time
-            time.sleep(1)
+        # with st.spinner(
+        #     "🔮 Initializing Forecast Engine..."
+        # ):
+        #     import time
+        #     time.sleep(1)
 
         show_forecasting(df)
 
