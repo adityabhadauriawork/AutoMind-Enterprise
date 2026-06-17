@@ -28,6 +28,7 @@ from database.sqlite_manager import (
 def show_forecasting(df):
 
     st.header("🔮 Forecasting Engine")
+    st.write("STEP 1")
 
     # =========================
     # PREPARE DATA
@@ -174,7 +175,7 @@ def show_forecasting(df):
     # =========================
     # FUTURE PREDICTIONS
     # =========================
-
+    st.write("STEP 2")
     future_months = st.slider(
         "Forecast Horizon (Months)",
         min_value=1,
