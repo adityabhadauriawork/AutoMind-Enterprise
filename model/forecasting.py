@@ -28,6 +28,8 @@ from database.sqlite_manager import (
 def show_forecasting(df):
 
     st.header("🔮 Forecasting Engine")
+    import time
+    start_time = time.time()
     st.write("STEP 1")
 
     # =========================
@@ -328,3 +330,4 @@ def show_forecasting(df):
         fig,
         use_container_width=True
     )
+    st.write(f"Page Load Time: {time.time() - start_time:.2f} seconds")
