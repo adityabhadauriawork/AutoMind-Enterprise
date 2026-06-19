@@ -126,16 +126,15 @@ def ask_llama(prompt):
             api_key=st.secrets["GEMINI_API_KEY"]
         )
 
-        models = genai.list_models()
+        model = genai.GenerativeModel(
+            "models/gemini-2.5-flash"
+        )
 
-        available_models = []
+        response = model.generate_content(
+            prompt
+        )
 
-        for model in models:
-            available_models.append(model.name)
-
-        st.write(available_models)
-
-        return "Model list displayed above."
+        return response.text
 
     except Exception as e:
 
