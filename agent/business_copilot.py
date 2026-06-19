@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import json
+import google.generativeai as genai
 
 from agent.agent_router import route_agent
 
@@ -119,41 +120,19 @@ def generate_business_context(df):
     
 def ask_llama(prompt):
 
-    url = "http://localhost:11434/api/generate"
+    genai.configure(
+        api_key=st.secrets["GEMINI_API_KEY"]
+    )
 
-    payload = {
-        "model": "llama3.2:3b",
-        "prompt": prompt,
-        "stream": False
-    }
+    model = genai.GenerativeModel(
+        "gemini-1.5-flash"
+    )
 
-    try:
+    response = model.generate_content(
+        prompt
+    )
 
-        response = requests.post(
-            url,
-            json=payload,
-            timeout=30
-        )
-
-        response.raise_for_status()
-
-        return response.json()["response"]
-
-    except Exception:
-
-        return """
-Business Copilot is unavailable on the deployed Streamlit version.
-
-Reason:
-This feature currently requires a local Ollama server.
-
-To use Business Copilot:
-1. Run AutoMind locally.
-2. Start Ollama.
-3. Load llama3.2:3b.
-
-All other AutoMind modules continue to work normally.
-"""
+    return response.text
 
 def show_business_copilot(df):
 
