@@ -130,7 +130,7 @@ def ask_llama(prompt):
     )
 
     model = genai.GenerativeModel(
-        "gemini-1.5-flash"
+        "gemini-pro"
     )
 
     response = model.generate_content(
