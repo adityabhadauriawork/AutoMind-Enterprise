@@ -127,12 +127,33 @@ def ask_llama(prompt):
         "stream": False
     }
 
-    response = requests.post(
-        url,
-        json=payload
-    )
+    try:
 
-    return response.json()["response"]
+        response = requests.post(
+            url,
+            json=payload,
+            timeout=30
+        )
+
+        response.raise_for_status()
+
+        return response.json()["response"]
+
+    except Exception:
+
+        return """
+Business Copilot is unavailable on the deployed Streamlit version.
+
+Reason:
+This feature currently requires a local Ollama server.
+
+To use Business Copilot:
+1. Run AutoMind locally.
+2. Start Ollama.
+3. Load llama3.2:3b.
+
+All other AutoMind modules continue to work normally.
+"""
 
 def show_business_copilot(df):
 
