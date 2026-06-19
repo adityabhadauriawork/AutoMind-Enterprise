@@ -120,24 +120,31 @@ def generate_business_context(df):
     
 def ask_llama(prompt):
 
-    st.write(
-        "API Key Loaded:",
-        "GEMINI_API_KEY" in st.secrets
-    )
+    try:
 
-    genai.configure(
-        api_key=st.secrets["GEMINI_API_KEY"]
-    )
+        st.write(
+            "API Key Loaded:",
+            "GEMINI_API_KEY" in st.secrets
+        )
 
-    model = genai.GenerativeModel(
-        "gemini-pro"
-    )
+        genai.configure(
+            api_key=st.secrets["GEMINI_API_KEY"]
+        )
 
-    response = model.generate_content(
-        prompt
-    )
+        model = genai.GenerativeModel(
+            "gemini-1.5-flash"
+        )
 
-    return response.text
+        response = model.generate_content(
+            prompt
+        )
+
+        return response.text
+
+    except Exception as e:
+
+        st.error(str(e))
+        return "Gemini Error"
 
 def show_business_copilot(df):
 
