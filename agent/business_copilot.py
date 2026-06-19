@@ -120,6 +120,11 @@ def generate_business_context(df):
     
 def ask_llama(prompt):
 
+    st.write(
+        "API Key Loaded:",
+        "GEMINI_API_KEY" in st.secrets
+    )
+
     genai.configure(
         api_key=st.secrets["GEMINI_API_KEY"]
     )
