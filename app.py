@@ -128,11 +128,15 @@ uploaded_file = st.file_uploader(
     "Upload CSV File",
     type=["csv"]
 )
+if "demo_dataset" in st.session_state:
+    uploaded_file = st.session_state["demo_dataset"]
+if st.button("🚀 Use Demo Dataset"):
+    st.session_state["demo_dataset"] = "data/demo/Sample - Superstore.csv"
 
 if uploaded_file is not None:
 
     logger.info(
-        f"Dataset uploaded: {uploaded_file.name}"
+        f"Dataset uploaded: {uploaded_file if isinstance(uploaded_file, str) else uploaded_file.name}"
     )
 
     try:
